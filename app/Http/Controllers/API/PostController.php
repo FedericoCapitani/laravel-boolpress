@@ -9,7 +9,7 @@ use App\Models\Post;
 class PostController extends Controller
 {
     public function index() {
-        $posts = Post::with(['tags', 'category', 'user'])->paginate(9);
+        $posts = Post::with(['tags', 'category', 'user'])->orderByDesc('id')->paginate(9);
 
         return $posts;
     }
@@ -19,10 +19,9 @@ class PostController extends Controller
         $post = Post::with(['tags', 'category', 'user'])->where('slug', $slug)->first();
 
         if($post){
-            ddd($post);
             return $post;
         }else{
-            response()->json([
+            return response()->json([
                 'status_code' => 404,
                 'status_text' => 'not found'
             ]);

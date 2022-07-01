@@ -2188,23 +2188,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Post",
@@ -39232,82 +39215,51 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "single-page" }, [
-    !_vm.loading
-      ? _c("div", { staticClass: "wrapper" }, [
-          _c(
-            "div",
-            {
-              staticClass: "hero_image p-5  text-light",
-              style: {
-                backgroundImage: "url(/storage/" + _vm.post.cover_image + ")",
-                backgroundRepeat: "no-repeat",
-                backgroundSize: "cover",
-              },
-            },
-            [
-              _c("div", { staticClass: "container " }, [
-                _c("h1", { staticClass: "display-3 " }, [
-                  _vm._v(_vm._s(_vm.post.title)),
-                ]),
-                _vm._v(" "),
-                _c("hr"),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "metadata d-flex justify-content-around " },
-                  [
-                    _vm.post.category
-                      ? _c("div", { staticClass: "category" }, [
-                          _c("strong", [_vm._v(" Category:")]),
-                          _vm._v(
-                            " " +
-                              _vm._s(_vm.post.category.name) +
-                              "\n            "
-                          ),
-                        ])
-                      : _vm._e(),
-                    _vm._v(" "),
-                    _vm.post.tags
-                      ? _c("div", { staticClass: "tags" }, [
-                          _c("strong", [_vm._v("Tags:")]),
-                          _vm._v(" "),
-                          _c(
-                            "ul",
-                            _vm._l(_vm.post.tags, function (tag) {
-                              return _c("li", { key: tag.id }, [
-                                _c("a", { attrs: { href: "#" } }, [
-                                  _vm._v(" #" + _vm._s(tag.name)),
-                                ]),
-                              ])
-                            }),
-                            0
-                          ),
-                        ])
-                      : _c("div", { staticClass: "no-tags" }, [
-                          _c("strong", [_vm._v("Tags: N/A")]),
-                        ]),
-                    _vm._v(" "),
-                    _vm.post.user
-                      ? _c("div", { staticClass: "author" }, [
-                          _c("strong", [_vm._v("Author:")]),
-                          _vm._v(
-                            " " + _vm._s(_vm.post.user.name) + "\n            "
-                          ),
-                        ])
-                      : _vm._e(),
-                  ]
-                ),
-              ]),
-            ]
-          ),
-          _vm._v(" "),
-          _c("div", { staticClass: "container" }, [
-            _c("div", { staticClass: "content text-center py-5" }, [
-              _vm._v("\n        " + _vm._s(_vm.post.content) + "\n    "),
-            ]),
-          ]),
-        ])
-      : _vm._e(),
+    _c("div", { staticClass: "container" }, [
+      _c("img", {
+        staticClass: "img-fluid w-100",
+        attrs: { src: _vm.post.image, alt: _vm.post.title },
+      }),
+      _vm._v(" "),
+      _c("h1", [_vm._v(" " + _vm._s(_vm.post.title) + " ")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "content" }, [
+        _vm._v("\n            " + _vm._s(_vm.post.body) + "\n        "),
+      ]),
+      _vm._v(" "),
+      _vm.post.category
+        ? _c("div", { staticClass: "category" }, [
+            _vm._v(
+              "\n            Category: " +
+                _vm._s(_vm.post.category.name) +
+                "\n        "
+            ),
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.post.tags
+        ? _c("div", { staticClass: "tags" }, [
+            _c("strong", [_vm._v("Tags: ")]),
+            _vm._v(" "),
+            _c(
+              "ul",
+              _vm._l(_vm.post.tags, function (tag) {
+                return _c("li", { key: tag.id }, [
+                  _vm._v(" " + _vm._s(tag.title) + " "),
+                ])
+              }),
+              0
+            ),
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.post.user
+        ? _c("div", { staticClass: "author" }, [
+            _c("strong", [_vm._v("Author: ")]),
+            _vm._v(" " + _vm._s(_vm.post.user.name) + "\n        "),
+          ])
+        : _vm._e(),
+    ]),
   ])
 }
 var staticRenderFns = []
@@ -55865,7 +55817,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Pages_About__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Pages/About */ "./resources/js/Pages/About.vue");
 /* harmony import */ var _Pages_Posts__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Pages/Posts */ "./resources/js/Pages/Posts.vue");
 /* harmony import */ var _Pages_Post__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Pages/Post */ "./resources/js/Pages/Post.vue");
-/* harmony import */ var _Pages_Contacts__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Pages/Contacts */ "./resources/js/Pages/Contacts.vue");
+/* harmony import */ var _Pages_Contacts__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Pages/Contacts */ "./resources/js/Pages/Contacts.vue");
 /* harmony import */ var _Pages_NotFound__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Pages/NotFound */ "./resources/js/Pages/NotFound.vue");
 // 1. Define route components.
 // These can be imported from other files
@@ -55894,7 +55846,7 @@ var routes = [{
 }, {
   path: '/contacts',
   name: 'concacts',
-  component: _Pages_Contacts__WEBPACK_IMPORTED_MODULE_6__["default"]
+  component: _Pages_Contacts__WEBPACK_IMPORTED_MODULE_4__["default"]
 }, {
   path: '/*',
   name: 'not-found',
