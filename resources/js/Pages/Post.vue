@@ -2,62 +2,86 @@
     
     <div class="single-page">
 
-        <div class="container">
-            
-            <img class="img-fluid w-100" :src="post.image" :alt="post.title">
-            <h1> {{post.title}} </h1>
-            
-            <div class="content">
-                {{post.body}}
+        <div class="wrapper" v-if="!loading">
+
+
+        <div class="hero_image p-5  text-light"
+        :style="{
+            backgroundImage: 'url(/storage/' + post.cover_image + ')',
+            backgroundRepeat: 'no-repeat',
+            backgroundSize: 'cover',
+        }">
+        <div class="container ">
+            <h1 class="display-3 " >{{ post.title }}</h1>
+            <hr />
+            <div class="metadata d-flex justify-content-around ">
+                <div class="category" v-if="post.category">
+                    <strong> Category:</strong> {{ post.category.name }}
+                </div>
+
+                <div class="tags" v-if="post.tags">
+                <strong>Tags:</strong>
+                    <ul>
+                        <li v-for="tag in post.tags" :key="tag.id">
+                            <a href="#"> #{{ tag.name }}</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="no-tags" v-else>
+                    <strong>Tags: N/A</strong>
+                </div>
+
+                <div class="author" v-if="post.user">
+                    <strong>Author:</strong> {{ post.user.name }}
+                </div>
             </div>
-
-            <div class="category" v-if="post.category">
-                Category: {{post.category.name}}
-            </div>
-
-            <div class="tags" v-if="post.tags">
-                <strong>Tags: </strong>
-                <ul>
-                    <li v-for="tag in post.tags" :key="tag.id"> {{tag.title}} </li>
-                </ul>
-
-            </div>
-
-            <div class="no-tags" v-else> 
-                <strong>Tags: N/A</strong>
-            </div>
-
-            <div class="author" v-if="post.user">
-                <strong>Author: </strong> {{post.user.name}}
-            </div>
-
         </div>
+        </div>
+
+    <div class="container">
+        <div class="content text-center py-5">
+            {{ post.content }}
+        </div>
+    </div>
+
+    </div>
 
     </div>
 
 </template>
 
 <script>
+import Axios from "axios";
 export default {
-    name: 'Post',
+    name: "Post",
     data() {
         return {
-            post: ''
-        }
+        post: "",
+        loading:true
+        };
     },
-    mounted(){
-        axios.get('/api/posts/' + this.$route.params.slug)
-        .then(response => {
-            console.log(response);
-            this.post = response.data;
+    created() {
+        Axios.get("/api/posts/" + this.$route.params.slug)
+        .then((response) => {
+            console.log(response)
+            if(response.data.status_code === 404) {
+                this.$router.push({name:'not-found'})
+            } else {
+                this.post = response.data;
+                this.loading = false
+            }
         })
-        .catch(e => {
+        .catch((e) => {
             console.error(e);
-        })
-    }
-}
+        });
+    },
+};
 </script>
 
-<style lang="scss">
-
+<style lang="scss" scoped>
+    .hero_image{
+        height: 600px;
+        background-color: rgba(0, 0, 0, 0.464);
+        background-blend-mode: overlay;
+    }
 </style>

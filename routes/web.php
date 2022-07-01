@@ -15,6 +15,9 @@ use App\Models\Post;
 |
 */
 
+// Route::post('contact-form', function(Request $request) {
+//     ddd($request->all);
+// });
 
 Auth::routes();
 

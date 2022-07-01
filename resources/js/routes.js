@@ -4,6 +4,8 @@ import Home from './Pages/Home';
 import About from './Pages/About';
 import Posts from './Pages/Posts';
 import Post from './Pages/Post';
+import Contacts from './Pages/Contacts';
+import NotFound from './Pages/NotFound';
 
 const routes = [{ 
         path: '/',
@@ -24,6 +26,16 @@ const routes = [{
         path: '/posts/:slug',
         name: 'post',
         component: Post
+    },
+    {
+        path: '/contacts',
+        name: 'concacts',
+        component: Contacts
+    },
+    {
+        path: '/*',
+        name: 'not-found',
+        component: NotFound
     }
 ]
 
